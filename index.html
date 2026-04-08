@@ -17,24 +17,29 @@
 
         body { font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
+        /* Login Screen */
         #login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary); z-index: 10000; display: flex; justify-content: center; align-items: center; }
         .login-box { background: white; padding: 30px; border-radius: 12px; width: 320px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .login-box input { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 16px; outline: none; }
         .login-btn { background: var(--secondary); color: white; border: none; width: 100%; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 6px; font-size: 16px; }
 
+        /* Header & Branding */
         header { background: var(--primary); color: white; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
         .logo { font-weight: bold; font-size: 24px; display: flex; align-items: center; gap: 10px; }
         .logo img { height: 40px; width: auto; border-radius: 4px; }
+        .logo span i { color: #ffe500; font-style: italic; }
         
         .search-bar { display: flex; background: white; border-radius: 4px; overflow: hidden; margin-bottom: 10px; }
         .search-bar input { border: none; padding: 12px; width: 100%; outline: none; color: #333; }
         .search-bar button { background: white; border: none; padding: 0 15px; color: var(--primary); font-size: 18px; }
 
+        /* Category Menu */
         .category-bar { display: flex; gap: 15px; padding: 10px 5%; background: white; overflow-x: auto; border-bottom: 1px solid #ddd; white-space: nowrap; }
         .cat-btn { background: #f0f0f0; border: none; padding: 8px 15px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; color: #444; }
         .cat-btn:hover { background: var(--primary); color: white; }
 
+        /* Product Layout */
         .container { padding: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 1000px; margin: auto; }
         .product-card { background: white; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; cursor: pointer; }
@@ -43,13 +48,14 @@
         .add-btn { background: var(--secondary); color: white; border: none; padding: 10px; font-weight: bold; cursor: pointer; border-radius: 4px; margin-top: 10px; font-size: 12px; }
 
         /* IMAGE SLIDER CSS */
-        .slider-container { position: relative; width: 100%; height: 250px; margin-bottom: 15px; overflow: hidden; border-radius: 8px; }
+        .slider-container { position: relative; width: 100%; height: 250px; margin-bottom: 15px; overflow: hidden; border-radius: 8px; background: #fff; }
         .slider-wrapper { display: flex; transition: transform 0.4s ease-in-out; height: 100%; }
         .slider-wrapper img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; }
-        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 50%; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 12px; cursor: pointer; border-radius: 50%; z-index: 5; }
         .prev { left: 10px; }
         .next { right: 10px; }
 
+        /* Cart & Modals */
         .sidebar { position: fixed; right: -100%; top: 0; width: 100%; max-width: 380px; height: 100%; background: white; z-index: 6000; padding: 20px; box-sizing: border-box; transition: 0.4s; box-shadow: -5px 0 20px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
         .sidebar.active { right: 0; }
         .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
@@ -57,8 +63,18 @@
         .full-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 5000; justify-content: center; align-items: center; }
         .modal-content { background: white; width: 90%; max-width: 450px; border-radius: 15px; padding: 20px; position: relative; max-height: 90vh; overflow-y: auto; }
 
+        .cart-item { display: flex; align-items: center; gap: 12px; padding: 15px 0; border-bottom: 1px solid #eee; }
+        .cart-item img { width: 60px; height: 60px; object-fit: contain; border-radius: 6px; border: 1px solid #eee; }
+        .cancel-btn { color: #ff4444; border: 1px solid #ff4444; background: transparent; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 11px; }
+
+        /* Floating Contact Icons */
+        .float-icon { position: fixed; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 24px; cursor: pointer; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .ai-btn { bottom: 90px; right: 20px; background: var(--primary); }
+        .wa-btn-float { bottom: 20px; right: 20px; background: var(--whatsapp); }
+
         .whatsapp-buy { background: var(--whatsapp); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; font-weight: bold; margin-top: 15px; border: none; width: 100%; cursor: pointer; font-size: 14px; }
         
+        /* AI Chatbox */
         #ai-box { display: none; position: fixed; bottom: 155px; right: 20px; width: 300px; background: white; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); z-index: 7000; overflow: hidden; border: 1px solid #ddd; }
         .ai-head { background: var(--primary); color: white; padding: 12px; font-weight: bold; display: flex; justify-content: space-between; }
         #ai-messages { height: 200px; padding: 15px; overflow-y: auto; font-size: 13px; background: #f9f9f9; display: flex; flex-direction: column; gap: 8px; }
@@ -80,13 +96,17 @@
 <header>
     <div class="header-top">
         <div class="logo">
-            <img src="bagwhite.png.jpg" alt="Logo">
+            <img src="bagwhite.png.jpg" alt="SnapCart Logo">
             SNAP<span style="color: #ffe500; font-style: italic;">CART</span>
         </div>
         <div onclick="toggleCart()" style="position:relative; cursor:pointer">
             <i class="fas fa-shopping-cart" style="font-size:24px"></i>
             <span id="cart-count" style="position:absolute; top:-8px; right:-8px; background:var(--secondary); padding:2px 6px; border-radius:50%; font-size:10px; font-weight:bold;">0</span>
         </div>
+    </div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for products..." onkeyup="search()">
+        <button><i class="fas fa-search"></i></button>
     </div>
 </header>
 
@@ -106,7 +126,7 @@
     <div class="ai-head">SnapCart Assistant <i class="fas fa-times" onclick="toggleAI()" style="cursor:pointer"></i></div>
     <div id="ai-messages"><div class="ai-msg bot">Hi! How can I help you?</div></div>
     <div style="display:flex; border-top:1px solid #eee;">
-        <input type="text" id="aiInput" placeholder="Type..." style="flex:1; padding:10px; border:none;">
+        <input type="text" id="aiInput" placeholder="Type..." style="flex:1; padding:10px; border:none; outline:none;" onkeypress="if(event.key==='Enter') askAI()">
         <button onclick="askAI()" style="background:var(--primary); color:white; border:none; padding:10px;"><i class="fas fa-paper-plane"></i></button>
     </div>
 </div>
@@ -146,7 +166,6 @@
     let cart = [];
     let currentSlide = 0;
 
-    // PRODUCT DATA - Microfiber Added Here
     const products = [
         { 
             id: 1, 
@@ -155,7 +174,7 @@
             price: 199, 
             img: "micro1.jpg", 
             images: ["micro1.jpg", "micro2.jpg", "micro3.jpg"],
-            desc: "Experience the ultimate cleaning power with our 800 GSM Ultra-Soft Microfiber Cloth. This premium cloth is designed to trap dust, dirt, and liquids instantly without leaving any scratches or lint behind. It is highly absorbent, holding up to 8 times its weight in water, making it perfect for car detailing, kitchen surfaces, and electronic screens. Made from durable, long-lasting material, it can be washed and reused hundreds of times. The dual-sided design offers a plush side for polishing and a shorter nap side for heavy-duty scrubbing. Upgrade your cleaning routine with the most trusted microfiber cloth in the market!" 
+            desc: "Experience the ultimate cleaning power with our 800 GSM Ultra-Soft Microfiber Cloth. This premium cloth is designed to trap dust, dirt, and liquids instantly without leaving any scratches or lint behind. It is highly absorbent, holding up to 8 times its weight in water, making it perfect for car detailing, kitchen surfaces, and electronic screens. Made from durable, long-lasting material, it can be washed and reused hundreds of times. The dual-sided design offers a plush side for polishing and a shorter nap side for heavy-duty scrubbing. Upgrade your cleaning routine with the most trusted microfiber cloth in the market! HONESTY IS OUR FIRST PRIORITY." 
         },
         { id: 2, cat: 'Fashion', name: "Titan Copper Gold Luxury Watch", price: 450, img: "watch.webp", images: ["watch.webp"], desc: "Luxury copper-gold finish timepiece." },
         { id: 3, cat: 'Sports', name: "Professional Size 5 Football", price: 350, img: "footbal.jpeg", images: ["footbal.jpeg"], desc: "Match-level control football." },
@@ -191,7 +210,6 @@
         document.getElementById('modalWA').href = `https://wa.me/${MY_NUM}?text=Hi, I want to buy ${p.name}.`;
         document.getElementById('productModal').style.display = 'flex';
 
-        // Hide buttons if only one image
         const btns = document.querySelectorAll('.slider-btn');
         btns.forEach(b => b.style.display = p.images.length > 1 ? 'block' : 'none');
     }
@@ -205,19 +223,43 @@
 
     function closeModal() { document.getElementById('productModal').style.display = 'none'; }
     function addToCart(id) { const p = products.find(x => x.id === id); cart.push({...p, cartId: Math.random()}); updateCartUI(); }
+    function remove(cid) { cart = cart.filter(x => x.cartId !== cid); updateCartUI(); }
     function toggleCart() { document.getElementById('cartSidebar').classList.toggle('active'); }
     function toggleAI() { const box = document.getElementById('ai-box'); box.style.display = (box.style.display === 'block') ? 'none' : 'block'; }
-    
+    function filterCat(cat) { if(cat === 'All') render(products); else render(products.filter(p => p.cat === cat)); }
+    function search() { const val = document.getElementById('searchInput').value.toLowerCase(); render(products.filter(p => p.name.toLowerCase().includes(val))); }
+
     function updateCartUI() {
         document.getElementById('cart-count').innerText = cart.length;
         document.getElementById('cart-list').innerHTML = cart.map(p => `
             <div class="cart-item">
                 <img src="${p.img}">
-                <div class="cart-item-info"><p class="cart-item-name">${p.name}</p><p class="cart-item-price">₹${p.price}</p></div>
+                <div style="flex-grow:1;"><p style="margin:0; font-size:14px; font-weight:bold;">${p.name}</p><p style="margin:0; color:var(--primary);">₹${p.price}</p></div>
                 <button class="cancel-btn" onclick="remove(${p.cartId})">CANCEL</button>
             </div>
         `).join('');
         document.getElementById('totalPrice').innerText = "₹" + cart.reduce((s, p) => s + p.price, 0);
+    }
+
+    function askAI() {
+        const input = document.getElementById('aiInput');
+        const box = document.getElementById('ai-messages');
+        const q = input.value.toLowerCase();
+        if(!q) return;
+        box.innerHTML += `<div class="ai-msg user">${input.value}</div>`;
+        let reply = "I'm not sure, but our team on WhatsApp can help you!";
+        if(q.includes("reach") || q.includes("deliver") || q.includes("when")) {
+            reply = "It will probably reach about 4-5 days. If you want further information, contact SNAPCART through WhatsApp.";
+        }
+        setTimeout(() => { box.innerHTML += `<div class="ai-msg bot">${reply}</div>`; box.scrollTop = box.scrollHeight; }, 500);
+        input.value = "";
+    }
+
+    function checkout() {
+        if(cart.length === 0) return alert("Cart is empty!");
+        let text = `Order from ${userName}:\n` + cart.map((p, i) => `${i+1}. ${p.name} (₹${p.price})`).join('\n');
+        text += `\nTotal: ₹${cart.reduce((s, p) => s + p.price, 0)}\nPayment: Online Only`;
+        window.open(`https://wa.me/${MY_NUM}?text=${encodeURIComponent(text)}`, '_blank');
     }
 </script>
 </body>
