@@ -9,101 +9,129 @@
     <style>
         :root {
             --primary: #2874f0;
+            --primary-dark: #1a56bd;
             --secondary: #fb641b;
             --whatsapp: #25D366;
             --bg: #f1f3f6;
             --text: #212121;
+            --white: #ffffff;
+            --star: #ffc107;
         }
 
-        body { font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-        /* Header & Branding */
-        header { background: var(--primary); color: white; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        /* Trust Bar */
+        .trust-bar { background: #f8f9fa; color: #444; padding: 8px 5%; font-size: 12px; font-weight: 600; text-align: center; border-bottom: 1px solid #ddd; display: flex; justify-content: center; gap: 20px; }
+        .trust-item i { color: var(--primary); margin-right: 5px; }
+
+        /* Header */
+        header { background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-        .logo { font-weight: bold; font-size: 24px; display: flex; align-items: center; gap: 10px; }
-        .logo img { height: 40px; width: auto; border-radius: 4px; }
-        .logo span i { color: #ffe500; font-style: italic; }
+        .logo { font-weight: bold; font-size: 24px; display: flex; align-items: center; gap: 10px; letter-spacing: 1px; }
+        .logo img { height: 35px; width: auto; border-radius: 4px; }
         
-        .search-bar { display: flex; background: white; border-radius: 4px; overflow: hidden; margin-bottom: 10px; }
-        .search-bar input { border: none; padding: 12px; width: 100%; outline: none; color: #333; }
-        .search-bar button { background: white; border: none; padding: 0 15px; color: var(--primary); font-size: 18px; }
+        .search-bar { display: flex; background: white; border-radius: 4px; overflow: hidden; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .search-bar input { border: none; padding: 12px; width: 100%; outline: none; color: #333; font-size: 14px; }
+        .search-bar button { background: white; border: none; padding: 0 15px; color: var(--primary); font-size: 18px; cursor: pointer; }
 
-        /* Category Menu */
-        .category-bar { display: flex; gap: 15px; padding: 10px 5%; background: white; overflow-x: auto; border-bottom: 1px solid #ddd; white-space: nowrap; }
-        .cat-btn { background: #f0f0f0; border: none; padding: 8px 15px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; color: #444; }
-        .cat-btn:hover { background: var(--primary); color: white; }
+        /* About Section */
+        .about-section { padding: 40px 5%; background: white; text-align: center; }
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 20px; }
+        .about-card { padding: 20px; }
+        .about-card i { font-size: 30px; color: var(--primary); margin-bottom: 15px; }
+        .about-card h3 { margin: 10px 0; font-size: 18px; }
+        .about-card p { font-size: 14px; color: #666; line-height: 1.5; }
 
         /* Product Layout */
-        .container { padding: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 1000px; margin: auto; }
-        .product-card { background: white; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; cursor: pointer; }
-        .p-title { font-size: 14px; margin: 8px 0; height: 35px; overflow: hidden; cursor: pointer; color: #333; }
-        .p-price { font-size: 18px; font-weight: bold; color: #000; }
-        .add-btn { background: var(--secondary); color: white; border: none; padding: 10px; font-weight: bold; cursor: pointer; border-radius: 4px; margin-top: 10px; font-size: 12px; }
+        .category-bar { display: flex; gap: 12px; padding: 12px 5%; background: white; overflow-x: auto; border-bottom: 1px solid #ddd; white-space: nowrap; scrollbar-width: none; }
+        .cat-btn { background: #f0f2f5; border: 1px solid #e0e0e0; padding: 8px 18px; border-radius: 25px; font-size: 13px; font-weight: 600; cursor: pointer; color: #444; transition: 0.3s; }
+        .cat-btn:hover, .cat-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* IMAGE SLIDER CSS */
-        .slider-container { position: relative; width: 100%; height: 250px; margin-bottom: 15px; overflow: hidden; border-radius: 8px; background: #fff; }
-        .slider-wrapper { display: flex; transition: transform 0.4s ease-in-out; height: 100%; }
-        .slider-wrapper img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; }
-        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 12px; cursor: pointer; border-radius: 50%; z-index: 5; }
-        .prev { left: 10px; }
-        .next { right: 10px; }
+        .container { padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 1100px; margin: auto; }
+        .product-card { background: white; border-radius: 12px; padding: 15px; display: flex; flex-direction: column; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee; position: relative; }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; cursor: pointer; margin-bottom: 10px; }
+        .p-rating { color: var(--star); font-size: 12px; margin-bottom: 5px; }
+        .p-rating span { color: #888; margin-left: 5px; }
+        .p-title { font-size: 14px; font-weight: 600; margin: 5px 0; height: 38px; overflow: hidden; color: #333; }
+        .p-price { font-size: 19px; font-weight: 800; color: #000; margin: 5px 0; }
+        .add-btn { background: var(--secondary); color: white; border: none; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 6px; margin-top: 10px; font-size: 12px; }
 
-        /* Cart & Modals */
-        .sidebar { position: fixed; right: -100%; top: 0; width: 100%; max-width: 380px; height: 100%; background: white; z-index: 6000; padding: 20px; box-sizing: border-box; transition: 0.4s; box-shadow: -5px 0 20px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
+        /* Cart Sidebar */
+        .sidebar { position: fixed; right: -100%; top: 0; width: 100%; max-width: 400px; height: 100%; background: white; z-index: 6000; padding: 25px; box-sizing: border-box; transition: 0.4s; box-shadow: -10px 0 30px rgba(0,0,0,0.15); display: flex; flex-direction: column; }
         .sidebar.active { right: 0; }
-        .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
+        .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f1f1; padding-bottom: 15px; margin-bottom: 15px; }
 
-        .full-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 5000; justify-content: center; align-items: center; }
-        .modal-content { background: white; width: 90%; max-width: 450px; border-radius: 15px; padding: 20px; position: relative; max-height: 90vh; overflow-y: auto; }
-
-        .cart-item { display: flex; align-items: center; gap: 12px; padding: 15px 0; border-bottom: 1px solid #eee; }
-        .cart-item img { width: 60px; height: 60px; object-fit: contain; border-radius: 6px; border: 1px solid #eee; }
-        .cancel-btn { color: #ff4444; border: 1px solid #ff4444; background: transparent; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 11px; }
-
-        /* Floating Contact Icons */
-        .float-icon { position: fixed; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 24px; cursor: pointer; z-index: 4000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .ai-btn { bottom: 90px; right: 20px; background: var(--primary); }
+        /* Floating Icons */
+        .float-icon { position: fixed; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 26px; cursor: pointer; z-index: 4000; box-shadow: 0 6px 15px rgba(0,0,0,0.25); }
+        .ai-btn { bottom: 95px; right: 20px; background: var(--primary); }
         .wa-btn-float { bottom: 20px; right: 20px; background: var(--whatsapp); }
 
-        .whatsapp-buy { background: var(--whatsapp); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; font-weight: bold; margin-top: 15px; border: none; width: 100%; cursor: pointer; font-size: 14px; }
-        
-        /* AI Chatbox */
-        #ai-box { display: none; position: fixed; bottom: 155px; right: 20px; width: 300px; background: white; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); z-index: 7000; overflow: hidden; border: 1px solid #ddd; }
-        .ai-head { background: var(--primary); color: white; padding: 12px; font-weight: bold; display: flex; justify-content: space-between; }
-        #ai-messages { height: 200px; padding: 15px; overflow-y: auto; font-size: 13px; background: #f9f9f9; display: flex; flex-direction: column; gap: 8px; }
-        .ai-msg { padding: 8px 12px; border-radius: 10px; max-width: 80%; }
-        .bot { background: #eee; align-self: flex-start; }
+        /* AI UPGRADED UI */
+        #ai-box { display: none; position: fixed; bottom: 165px; right: 20px; width: 320px; background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 7000; overflow: hidden; border: 1px solid #eee; }
+        .ai-head { background: var(--primary); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        #ai-messages { height: 250px; padding: 15px; overflow-y: auto; font-size: 14px; background: #fcfcfc; display: flex; flex-direction: column; gap: 10px; }
+        .ai-msg { padding: 10px 14px; border-radius: 12px; max-width: 85%; line-height: 1.4; animation: fadeIn 0.3s ease; }
+        .bot { background: #f0f0f0; align-self: flex-start; color: #333; }
         .user { background: var(--primary); color: white; align-self: flex-end; }
+        
+        /* Typing Indicator */
+        .typing { font-style: italic; font-size: 12px; color: #888; display: none; margin-bottom: 5px; }
+
+        /* Quick Action Buttons */
+        .ai-actions { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 15px; background: #fff; border-top: 1px solid #eee; }
+        .action-chip { background: #eef4ff; color: var(--primary); border: 1px solid var(--primary); padding: 5px 12px; border-radius: 15px; font-size: 11px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .action-chip:hover { background: var(--primary); color: white; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .whatsapp-buy { background: var(--whatsapp); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 16px; border-radius: 10px; font-weight: bold; margin-top: 15px; border: none; width: 100%; cursor: pointer; font-size: 15px; }
+
+        /* Modal */
+        .full-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 5000; justify-content: center; align-items: center; padding: 15px; }
+        .modal-content { background: white; width: 100%; max-width: 480px; border-radius: 20px; padding: 25px; position: relative; max-height: 90vh; overflow-y: auto; }
+        .slider-container { position: relative; width: 100%; height: 280px; margin-bottom: 15px; overflow: hidden; border-radius: 8px; background: #f9f9f9; }
+        .slider-wrapper { display: flex; transition: transform 0.4s ease-in-out; height: 100%; }
+        .slider-wrapper img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: white; border: none; padding: 12px; cursor: pointer; border-radius: 50%; z-index: 5; }
+        .prev { left: 10px; } .next { right: 10px; }
     </style>
 </head>
-<body onload="render(products)"> 
+<body onload="render(products)">
+
+<div class="trust-bar">
+    <div class="trust-item"><i class="fas fa-truck"></i> Pan India Delivery (4-5 Days)</div>
+    <div class="trust-item"><i class="fas fa-shield-alt"></i> Quality Assured</div>
+</div>
+
 <header>
     <div class="header-top">
         <div class="logo">
-            <img src="bagwhite.png.jpg" alt="SnapCart Logo">
+            <img src="bagwhite.png.jpg" alt="SnapCart">
             SNAP<span style="color: #ffe500; font-style: italic;">CART</span>
         </div>
         <div onclick="toggleCart()" style="position:relative; cursor:pointer">
             <i class="fas fa-shopping-cart" style="font-size:24px"></i>
-            <span id="cart-count" style="position:absolute; top:-8px; right:-8px; background:var(--secondary); padding:2px 6px; border-radius:50%; font-size:10px; font-weight:bold;">0</span>
+            <span id="cart-count" style="position:absolute; top:-8px; right:-8px; background:var(--secondary); padding:2px 7px; border-radius:50%; font-size:11px; font-weight:bold; border: 2px solid var(--primary);">0</span>
         </div>
     </div>
     <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search for products..." onkeyup="search()">
+        <input type="text" id="searchInput" placeholder="Search premium products..." onkeyup="search()">
         <button><i class="fas fa-search"></i></button>
     </div>
 </header>
 
-<section style="padding: 30px 5%; background: white; border-bottom: 1px solid #ddd;">
-    <h2 style="color: var(--primary); margin-top: 0; font-size: 22px;">About Us</h2>
-    <p style="line-height: 1.8; color: #444; text-align: justify; font-size: 14px; margin: 0;">
-        Welcome to SNAPCART, your dedicated platform for viewing premium quality products ranging from home essentials to fashion and sports. It is very important for our visitors to understand that this is just a website designed to showcase our curated collection and is not an automated online store with a direct payment gateway. We believe in providing a personalized shopping experience, which is why we do not process orders automatically through this interface. Instead, we use this space to help you discover high-value items that suit your needs. If you want to buy any of our products or if you are interested in learning more about specific details, pricing, or availability, please do not hesitate to reach out to us directly. To start your purchase journey, simply click on the WhatsApp icon located at the bottom of the screen. By chatting with us, you can get all your questions answered in real-time by our team. We prefer this direct interaction to ensure that you receive the best service and clear communication regarding our premium offerings. Once you have made your choice via chat, we will guide you through the process of completing your order securely. Thank you for visiting us and for your interest in our high-quality product range!
-    </p>
+<section class="about-section">
+    <h2 style="color: var(--primary); font-size: 26px; margin-bottom: 10px;">Welcome to SNAPCART</h2>
+    <div class="about-grid">
+        <div class="about-card"><i class="fas fa-shipping-fast"></i><h3>Reliable Shipping</h3><p>Safe delivery within 4-5 business days across India.</p></div>
+        <div class="about-card"><i class="fab fa-whatsapp"></i><h3>Direct Support</h3><p>Chat directly with our team for orders and inquiries.</p></div>
+        <div class="about-card"><i class="fas fa-check-circle"></i><h3>Online Only</h3><p>Secure online payment modes for all curated items.</p></div>
+    </div>
 </section>
 
 <div class="category-bar">
-    <button class="cat-btn" onclick="filterCat('All')">All Products</button>
+    <button class="cat-btn active" onclick="filterCat('All')">All Products</button>
     <button class="cat-btn" onclick="filterCat('Home')">Home</button>
     <button class="cat-btn" onclick="filterCat('Fashion')">Fashion</button>
     <button class="cat-btn" onclick="filterCat('Sports')">Sports</button>
@@ -115,40 +143,44 @@
 <a href="https://wa.me/919380811781" class="float-icon wa-btn-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <div id="ai-box">
-    <div class="ai-head">SnapCart Assistant <i class="fas fa-times" onclick="toggleAI()" style="cursor:pointer"></i></div>
-    <div id="ai-messages"><div class="ai-msg bot">Hi! How can I help you?</div></div>
-    <div style="display:flex; border-top:1px solid #eee;">
-        <input type="text" id="aiInput" placeholder="Type..." style="flex:1; padding:10px; border:none; outline:none;" onkeypress="if(event.key==='Enter') askAI()">
-        <button onclick="askAI()" style="background:var(--primary); color:white; border:none; padding:10px;"><i class="fas fa-paper-plane"></i></button>
+    <div class="ai-head">
+        <span><i class="fas fa-robot"></i> SnapCart Assistant</span>
+        <i class="fas fa-times" onclick="toggleAI()" style="cursor:pointer"></i>
+    </div>
+    <div id="ai-messages"><div class="ai-msg bot">Hi! I'm your SnapCart Assistant. How can I help you today?</div></div>
+    <div id="ai-typing" class="typing" style="padding-left:15px;">SnapCart is typing...</div>
+    
+    <div class="ai-actions">
+        <div class="action-chip" onclick="quickAsk('Delivery time?')">Delivery Time</div>
+        <div class="action-chip" onclick="quickAsk('Payment modes?')">Payments</div>
+        <div class="action-chip" onclick="quickAsk('How to order?')">How to Order</div>
+    </div>
+
+    <div style="display:flex; border-top:1px solid #eee; padding: 10px; align-items:center;">
+        <button id="voice-btn" onclick="startVoice()" style="background:none; border:none; color:var(--primary); font-size:18px; cursor:pointer; margin-right:5px;"><i class="fas fa-microphone"></i></button>
+        <input type="text" id="aiInput" placeholder="Type a message..." style="flex:1; padding:10px; border:1px solid #ddd; border-radius: 20px; outline:none;" onkeypress="if(event.key==='Enter') askAI()">
+        <button onclick="askAI()" style="background:var(--primary); color:white; border:none; padding:10px 15px; border-radius: 50%; margin-left: 10px; cursor:pointer;"><i class="fas fa-paper-plane"></i></button>
     </div>
 </div>
 
 <div id="productModal" class="full-modal">
     <div class="modal-content">
-        <i class="fas fa-times" onclick="closeModal()" style="position:absolute; right:20px; top:20px; font-size:24px; cursor:pointer; z-index:10;"></i>
-        
-        <div class="slider-container">
-            <div class="slider-wrapper" id="sliderWrapper"></div>
-            <button class="slider-btn prev" onclick="moveSlide(-1)">❮</button>
-            <button class="slider-btn next" onclick="moveSlide(1)">❯</button>
-        </div>
-
-        <h2 id="modalTitle" style="margin:0 0 10px 0;"></h2>
-        <div id="modalPrice" style="font-size:24px; font-weight:bold; color:var(--primary); margin-bottom:10px;"></div>
-        <div style="background:#fff5f5; color:#d32f2f; padding:10px; border-radius:6px; font-size:13px; font-weight:bold; margin-bottom:15px;">
-            <i class="fas fa-credit-card"></i> PAYMENT MODE: ONLINE PAYMENT ONLY
-        </div>
-        <p id="modalDesc" style="color:#555; line-height:1.6; font-size:14px; margin-bottom:20px;"></p>
-        <a id="modalWA" class="whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> CONTACT VIA WHATSAPP</a>
+        <i class="fas fa-times" onclick="closeModal()" style="position:absolute; right:20px; top:20px; font-size:24px; cursor:pointer; color: #888;"></i>
+        <div class="slider-container"><div class="slider-wrapper" id="sliderWrapper"></div><button class="slider-btn prev" onclick="moveSlide(-1)">❮</button><button class="slider-btn next" onclick="moveSlide(1)">❯</button></div>
+        <h2 id="modalTitle"></h2>
+        <div id="modalPrice" style="font-size:26px; font-weight:800; color:var(--primary);"></div>
+        <div style="background:#fff5f5; color:#d32f2f; padding:12px; border-radius:8px; font-size:13px; font-weight:bold; margin: 15px 0;"><i class="fas fa-credit-card"></i> ONLINE PAYMENT ONLY</div>
+        <p id="modalDesc" style="color:#555; line-height:1.6;"></p>
+        <a id="modalWA" class="whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> BUY VIA WHATSAPP</a>
     </div>
 </div>
 
 <div id="cartSidebar" class="sidebar">
-    <div class="sidebar-header"><h2>My Cart</h2><i class="fas fa-times" onclick="toggleCart()" style="cursor:pointer;"></i></div>
+    <div class="sidebar-header"><h2><i class="fas fa-shopping-bag"></i> My Cart</h2><i class="fas fa-times" onclick="toggleCart()" style="cursor:pointer; color:#888;"></i></div>
     <div id="cart-list" style="flex-grow:1; overflow-y:auto;"></div>
-    <div style="border-top:2px solid #eee; padding-top:20px;">
-        <h3 style="display:flex; justify-content:space-between;"><span>Total:</span> <span id="totalPrice">₹0</span></h3>
-        <button class="whatsapp-buy" onclick="checkout()" style="border:none;">ORDER ON WHATSAPP</button>
+    <div style="border-top:2px solid #f1f1f1; padding-top:20px;">
+        <h3 style="display:flex; justify-content:space-between;"><span>Total:</span> <span id="totalPrice" style="color:var(--primary)">₹0</span></h3>
+        <button class="whatsapp-buy" onclick="checkout()" style="border:none;">CHECKOUT ON WHATSAPP</button>
     </div>
 </div>
 
@@ -158,24 +190,18 @@
     let currentSlide = 0;
 
     const products = [
-        { 
-            id: 1, 
-            cat: 'Home', 
-            name: "Ultra-Soft Premium Microfiber Cleaning Cloth", 
-            price: 199, 
-            img: "micro1.jpg", 
-            images: ["micro1.jpg", "micro2.jpg", "micro3.jpg"],
-            desc: "Experience the ultimate cleaning power with our 800 GSM Ultra-Soft Microfiber Cloth. This premium cloth is designed to trap dust, dirt, and liquids instantly without leaving any scratches or lint behind. It is highly absorbent, holding up to 8 times its weight in water, making it perfect for car detailing, kitchen surfaces, and electronic screens. Made from durable, long-lasting material, it can be washed and reused hundreds of times. The dual-sided design offers a plush side for polishing and a shorter nap side for heavy-duty scrubbing. Upgrade your cleaning routine with the most trusted microfiber cloth in the market! HONESTY IS OUR FIRST PRIORITY." 
-        },
-        { id: 2, cat: 'Fashion', name: "Titan Copper Gold Luxury Watch", price: 450, img: "watch.webp", images: ["watch.webp"], desc: "Luxury copper-gold finish timepiece." },
-        { id: 3, cat: 'Sports', name: "Professional Size 5 Football", price: 350, img: "footbal.jpeg", images: ["footbal.jpeg"], desc: "Match-level control football." },
-        { id: 4, cat: 'Music', name: "Classic Wooden Acoustic Guitar", price: 1250, img: "guitar.jpeg", images: ["guitar.jpeg"], desc: "Rich, warm sound acoustic guitar." }
+        { id: 1, cat: 'Home', name: "Ultra-Soft Premium Microfiber Cleaning Cloth", price: 199, rating: 4.8, reviews: 142, img: "micro1.jpg", images: ["micro1.jpg", "micro2.jpg", "micro3.jpg"], desc: "800 GSM Microfiber Cloth for cars and home." },
+        { id: 2, cat: 'Fashion', name: "Titan Copper Gold Luxury Watch", price: 450, rating: 4.9, reviews: 88, img: "watch.webp", images: ["watch.webp"], desc: "Premium luxury timepiece." },
+        { id: 3, cat: 'Sports', name: "Professional Size 5 Football", price: 350, rating: 4.7, reviews: 210, img: "footbal.jpeg", images: ["footbal.jpeg"], desc: "Match-level control football." },
+        { id: 4, cat: 'Music', name: "Classic Wooden Acoustic Guitar", price: 1250, rating: 4.8, reviews: 56, img: "guitar.jpeg", images: ["guitar.jpeg"], desc: "Rich acoustic sound." },
+        { id: 5, cat: 'Home', name: "Manual Hand-Press Nut Chopper", price: 249, rating: 4.9, reviews: 115, img: "chopper_main.jpg", images: ["chopper_main.jpg"], desc: "Effortless nut and garlic chopping." }
     ];
 
     function render(data) {
         document.getElementById('productGrid').innerHTML = data.map(p => `
             <div class="product-card">
                 <img src="${p.img}" onclick="openProduct(${p.id})">
+                <div class="p-rating">${'<i class="fas fa-star"></i>'.repeat(Math.floor(p.rating))}<span>(${p.reviews})</span></div>
                 <div class="p-title" onclick="openProduct(${p.id})">${p.name}</div>
                 <div class="p-price">₹${p.price}</div>
                 <button class="add-btn" onclick="addToCart(${p.id})">ADD TO CART</button>
@@ -189,13 +215,11 @@
         const wrapper = document.getElementById('sliderWrapper');
         wrapper.innerHTML = p.images.map(img => `<img src="${img}">`).join('');
         wrapper.style.transform = `translateX(0)`;
-
         document.getElementById('modalTitle').innerText = p.name;
         document.getElementById('modalPrice').innerText = "₹" + p.price;
         document.getElementById('modalDesc').innerText = p.desc;
-        document.getElementById('modalWA').href = `https://wa.me/${MY_NUM}?text=Hi, I want to buy ${p.name}.`;
+        document.getElementById('modalWA').href = `https://wa.me/${MY_NUM}?text=Hi SnapCart, I want to buy ${p.name}.`;
         document.getElementById('productModal').style.display = 'flex';
-
         const btns = document.querySelectorAll('.slider-btn');
         btns.forEach(b => b.style.display = p.images.length > 1 ? 'block' : 'none');
     }
@@ -212,39 +236,82 @@
     function remove(cid) { cart = cart.filter(x => x.cartId !== cid); updateCartUI(); }
     function toggleCart() { document.getElementById('cartSidebar').classList.toggle('active'); }
     function toggleAI() { const box = document.getElementById('ai-box'); box.style.display = (box.style.display === 'block') ? 'none' : 'block'; }
-    function filterCat(cat) { if(cat === 'All') render(products); else render(products.filter(p => p.cat === cat)); }
+    
+    function filterCat(cat) { 
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        if(cat === 'All') render(products); else render(products.filter(p => p.cat === cat)); 
+    }
+
     function search() { const val = document.getElementById('searchInput').value.toLowerCase(); render(products.filter(p => p.name.toLowerCase().includes(val))); }
 
     function updateCartUI() {
         document.getElementById('cart-count').innerText = cart.length;
         document.getElementById('cart-list').innerHTML = cart.map(p => `
-            <div class="cart-item">
-                <img src="${p.img}">
-                <div style="flex-grow:1;"><p style="margin:0; font-size:14px; font-weight:bold;">${p.name}</p><p style="margin:0; color:var(--primary);">₹${p.price}</p></div>
-                <button class="cancel-btn" onclick="remove(${p.cartId})">CANCEL</button>
+            <div class="cart-item" style="display:flex; align-items:center; gap:12px; padding:15px 0; border-bottom:1px solid #eee;">
+                <img src="${p.img}" style="width:60px; height:60px; object-fit:contain;">
+                <div style="flex-grow:1;"><p style="margin:0; font-size:14px; font-weight:bold;">${p.name}</p><p style="margin:0; color:var(--primary); font-weight:bold;">₹${p.price}</p></div>
+                <button onclick="remove(${p.cartId})" style="color:#ff4444; border:1px solid #ff4444; background:transparent; padding:6px 10px; border-radius:6px; cursor:pointer; font-size:11px;">REMOVE</button>
             </div>
         `).join('');
         document.getElementById('totalPrice').innerText = "₹" + cart.reduce((s, p) => s + p.price, 0);
     }
 
+    /* UPGRADED AI FUNCTIONS */
+    function quickAsk(text) { document.getElementById('aiInput').value = text; askAI(); }
+
     function askAI() {
         const input = document.getElementById('aiInput');
         const box = document.getElementById('ai-messages');
-        const q = input.value.toLowerCase();
+        const typing = document.getElementById('ai-typing');
+        const q = input.value.trim().toLowerCase();
         if(!q) return;
+
         box.innerHTML += `<div class="ai-msg user">${input.value}</div>`;
-        let reply = "I'm not sure, but our team on WhatsApp can help you!";
-        if(q.includes("reach") || q.includes("deliver") || q.includes("when")) {
-            reply = "It will probably reach about 4-5 days. If you want further information, contact SNAPCART through WhatsApp.";
-        }
-        setTimeout(() => { box.innerHTML += `<div class="ai-msg bot">${reply}</div>`; box.scrollTop = box.scrollHeight; }, 500);
         input.value = "";
+        box.scrollTop = box.scrollHeight;
+
+        // Smart Keyword Mapping (Basic Upgrade)
+        let reply = "I'm not quite sure about that. Please contact our WhatsApp team for expert help!";
+        if(q.includes("delivery") || q.includes("reach") || q.includes("time") || q.includes("fast")) {
+            reply = "Standard delivery takes 4-5 business days across India. We use premium couriers to ensure your order arrives safely.";
+        } else if(q.includes("pay") || q.includes("payment") || q.includes("cod") || q.includes("mode")) {
+            reply = "To ensure quality and security, we currently accept Online Payments only. We'll provide secure payment details on WhatsApp.";
+        } else if(q.includes("order") || q.includes("buy") || q.includes("how")) {
+            reply = "Just add items to your cart and click 'Checkout on WhatsApp'. We will process your order manually for a personal touch.";
+        } else if(q.includes("discount") || q.includes("offer") || q.includes("cheap")) {
+            reply = "Our prices are already curated for the best value! For bulk orders, please chat with us on WhatsApp.";
+        } else if(q.includes("hello") || q.includes("hi") || q.includes("hey")) {
+            reply = "Hello! Welcome to SnapCart. I can help you with delivery info, payments, or product details.";
+        }
+
+        // Typing Indicator Simulation
+        typing.style.display = "block";
+        setTimeout(() => {
+            typing.style.display = "none";
+            box.innerHTML += `<div class="ai-msg bot">${reply}</div>`;
+            box.scrollTop = box.scrollHeight;
+        }, 1200);
+    }
+
+    // Voice-to-Text Upgrade
+    function startVoice() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) return alert("Your browser doesn't support voice recognition.");
+        const recognition = new SpeechRecognition();
+        document.getElementById('voice-btn').style.color = "red";
+        recognition.onresult = (event) => {
+            document.getElementById('aiInput').value = event.results[0][0].transcript;
+            document.getElementById('voice-btn').style.color = "var(--primary)";
+            askAI();
+        };
+        recognition.start();
     }
 
     function checkout() {
-        if(cart.length === 0) return alert("Cart is empty!");
-        let text = `New Order:\n` + cart.map((p, i) => `${i+1}. ${p.name} (₹${p.price})`).join('\n');
-        text += `\nTotal: ₹${cart.reduce((s, p) => s + p.price, 0)}\nPayment: Online Only`;
+        if(cart.length === 0) return alert("Your cart is empty!");
+        let text = `🚀 *New Order from SnapCart*:\n\n` + cart.map((p, i) => `*${i+1}.* ${p.name} - _₹${p.price}_`).join('\n');
+        text += `\n\n💰 *Total:* ₹${cart.reduce((s, p) => s + p.price, 0)}\n💳 *Payment:* Online Only`;
         window.open(`https://wa.me/${MY_NUM}?text=${encodeURIComponent(text)}`, '_blank');
     }
 </script>
