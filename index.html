@@ -57,28 +57,23 @@
         .p-price { font-size: 19px; font-weight: 800; color: #000; margin: 5px 0; }
         .add-btn { background: var(--secondary); color: white; border: none; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 6px; margin-top: 10px; font-size: 12px; }
 
-        /* Cart Sidebar */
+        /* Sidebar & Modals */
         .sidebar { position: fixed; right: -100%; top: 0; width: 100%; max-width: 400px; height: 100%; background: white; z-index: 6000; padding: 25px; box-sizing: border-box; transition: 0.4s; box-shadow: -10px 0 30px rgba(0,0,0,0.15); display: flex; flex-direction: column; }
         .sidebar.active { right: 0; }
         .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f1f1; padding-bottom: 15px; margin-bottom: 15px; }
 
-        /* Floating Icons */
         .float-icon { position: fixed; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 26px; cursor: pointer; z-index: 4000; box-shadow: 0 6px 15px rgba(0,0,0,0.25); }
         .ai-btn { bottom: 95px; right: 20px; background: var(--primary); }
         .wa-btn-float { bottom: 20px; right: 20px; background: var(--whatsapp); }
 
-        /* AI UPGRADED UI */
         #ai-box { display: none; position: fixed; bottom: 165px; right: 20px; width: 320px; background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 7000; overflow: hidden; border: 1px solid #eee; }
         .ai-head { background: var(--primary); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
         #ai-messages { height: 250px; padding: 15px; overflow-y: auto; font-size: 14px; background: #fcfcfc; display: flex; flex-direction: column; gap: 10px; }
         .ai-msg { padding: 10px 14px; border-radius: 12px; max-width: 85%; line-height: 1.4; animation: fadeIn 0.3s ease; }
         .bot { background: #f0f0f0; align-self: flex-start; color: #333; }
         .user { background: var(--primary); color: white; align-self: flex-end; }
-        
-        /* Typing Indicator */
         .typing { font-style: italic; font-size: 12px; color: #888; display: none; margin-bottom: 5px; }
 
-        /* Quick Action Buttons */
         .ai-actions { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 15px; background: #fff; border-top: 1px solid #eee; }
         .action-chip { background: #eef4ff; color: var(--primary); border: 1px solid var(--primary); padding: 5px 12px; border-radius: 15px; font-size: 11px; font-weight: bold; cursor: pointer; transition: 0.2s; }
         .action-chip:hover { background: var(--primary); color: white; }
@@ -87,7 +82,6 @@
 
         .whatsapp-buy { background: var(--whatsapp); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 16px; border-radius: 10px; font-weight: bold; margin-top: 15px; border: none; width: 100%; cursor: pointer; font-size: 15px; }
 
-        /* Modal */
         .full-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 5000; justify-content: center; align-items: center; padding: 15px; }
         .modal-content { background: white; width: 100%; max-width: 480px; border-radius: 20px; padding: 25px; position: relative; max-height: 90vh; overflow-y: auto; }
         .slider-container { position: relative; width: 100%; height: 280px; margin-bottom: 15px; overflow: hidden; border-radius: 8px; background: #f9f9f9; }
@@ -101,7 +95,7 @@
 
 <div class="trust-bar">
     <div class="trust-item"><i class="fas fa-truck"></i> Pan India Delivery (4-5 Days)</div>
-    <div class="trust-item"><i class="fas fa-shield-alt"></i> Quality Assured</div>
+    <div class="trust-item"><i class="fas fa-money-bill-wave"></i> Cash on Delivery Available</div>
 </div>
 
 <header>
@@ -126,7 +120,7 @@
     <div class="about-grid">
         <div class="about-card"><i class="fas fa-shipping-fast"></i><h3>Reliable Shipping</h3><p>Safe delivery within 4-5 business days across India.</p></div>
         <div class="about-card"><i class="fab fa-whatsapp"></i><h3>Direct Support</h3><p>Chat directly with our team for orders and inquiries.</p></div>
-        <div class="about-card"><i class="fas fa-check-circle"></i><h3>Online Only</h3><p>Secure online payment modes for all curated items.</p></div>
+        <div class="about-card"><i class="fas fa-wallet"></i><h3>Easy Payments</h3><p>We accept both Online (UPI/Card) and Cash on Delivery.</p></div>
     </div>
 </section>
 
@@ -153,7 +147,7 @@
     <div class="ai-actions">
         <div class="action-chip" onclick="quickAsk('Delivery time?')">Delivery Time</div>
         <div class="action-chip" onclick="quickAsk('Payment modes?')">Payments</div>
-        <div class="action-chip" onclick="quickAsk('How to order?')">How to Order</div>
+        <div class="action-chip" onclick="quickAsk('Is COD available?')">COD?</div>
     </div>
 
     <div style="display:flex; border-top:1px solid #eee; padding: 10px; align-items:center;">
@@ -169,7 +163,7 @@
         <div class="slider-container"><div class="slider-wrapper" id="sliderWrapper"></div><button class="slider-btn prev" onclick="moveSlide(-1)">❮</button><button class="slider-btn next" onclick="moveSlide(1)">❯</button></div>
         <h2 id="modalTitle"></h2>
         <div id="modalPrice" style="font-size:26px; font-weight:800; color:var(--primary);"></div>
-        <div style="background:#fff5f5; color:#d32f2f; padding:12px; border-radius:8px; font-size:13px; font-weight:bold; margin: 15px 0;"><i class="fas fa-credit-card"></i> ONLINE PAYMENT ONLY</div>
+        <div style="background:#e8f5e9; color:#2e7d32; padding:12px; border-radius:8px; font-size:13px; font-weight:bold; margin: 15px 0;"><i class="fas fa-check-circle"></i> CASH ON DELIVERY & ONLINE AVAILABLE</div>
         <p id="modalDesc" style="color:#555; line-height:1.6;"></p>
         <a id="modalWA" class="whatsapp-buy" target="_blank"><i class="fab fa-whatsapp"></i> BUY VIA WHATSAPP</a>
     </div>
@@ -180,6 +174,7 @@
     <div id="cart-list" style="flex-grow:1; overflow-y:auto;"></div>
     <div style="border-top:2px solid #f1f1f1; padding-top:20px;">
         <h3 style="display:flex; justify-content:space-between;"><span>Total:</span> <span id="totalPrice" style="color:var(--primary)">₹0</span></h3>
+        <p style="font-size:11px; color:#777; margin-bottom:10px;">*Choose COD or Online Payment on WhatsApp</p>
         <button class="whatsapp-buy" onclick="checkout()" style="border:none;">CHECKOUT ON WHATSAPP</button>
     </div>
 </div>
@@ -218,7 +213,7 @@
         document.getElementById('modalTitle').innerText = p.name;
         document.getElementById('modalPrice').innerText = "₹" + p.price;
         document.getElementById('modalDesc').innerText = p.desc;
-        document.getElementById('modalWA').href = `https://wa.me/${MY_NUM}?text=Hi SnapCart, I want to buy ${p.name}.`;
+        document.getElementById('modalWA').href = `https://wa.me/${MY_NUM}?text=Hi SnapCart, I want to order ${p.name}. I would like to pay via (COD/Online).`;
         document.getElementById('productModal').style.display = 'flex';
         const btns = document.querySelectorAll('.slider-btn');
         btns.forEach(b => b.style.display = p.images.length > 1 ? 'block' : 'none');
@@ -257,7 +252,6 @@
         document.getElementById('totalPrice').innerText = "₹" + cart.reduce((s, p) => s + p.price, 0);
     }
 
-    /* UPGRADED AI FUNCTIONS */
     function quickAsk(text) { document.getElementById('aiInput').value = text; askAI(); }
 
     function askAI() {
@@ -271,47 +265,37 @@
         input.value = "";
         box.scrollTop = box.scrollHeight;
 
-        // Smart Keyword Mapping (Basic Upgrade)
-        let reply = "I'm not quite sure about that. Please contact our WhatsApp team for expert help!";
-        if(q.includes("delivery") || q.includes("reach") || q.includes("time") || q.includes("fast")) {
-            reply = "Standard delivery takes 4-5 business days across India. We use premium couriers to ensure your order arrives safely.";
-        } else if(q.includes("pay") || q.includes("payment") || q.includes("cod") || q.includes("mode")) {
-            reply = "To ensure quality and security, we currently accept Online Payments only. We'll provide secure payment details on WhatsApp.";
-        } else if(q.includes("order") || q.includes("buy") || q.includes("how")) {
-            reply = "Just add items to your cart and click 'Checkout on WhatsApp'. We will process your order manually for a personal touch.";
-        } else if(q.includes("discount") || q.includes("offer") || q.includes("cheap")) {
-            reply = "Our prices are already curated for the best value! For bulk orders, please chat with us on WhatsApp.";
-        } else if(q.includes("hello") || q.includes("hi") || q.includes("hey")) {
-            reply = "Hello! Welcome to SnapCart. I can help you with delivery info, payments, or product details.";
+        let reply = "I'm not quite sure. Please chat with our WhatsApp team for details!";
+        if(q.includes("delivery") || q.includes("time")) {
+            reply = "We deliver Pan-India in 4-5 days.";
+        } else if(q.includes("pay") || q.includes("cod") || q.includes("cash")) {
+            reply = "Great news! We accept Cash on Delivery (COD) as well as UPI/Online payments.";
+        } else if(q.includes("order") || q.includes("how")) {
+            reply = "Add items to your cart and click 'Checkout'. You can finalize your payment choice on WhatsApp.";
+        } else if(q.includes("hi") || q.includes("hello")) {
+            reply = "Hello! I can help with delivery, payment info, or COD questions.";
         }
 
-        // Typing Indicator Simulation
         typing.style.display = "block";
         setTimeout(() => {
             typing.style.display = "none";
             box.innerHTML += `<div class="ai-msg bot">${reply}</div>`;
             box.scrollTop = box.scrollHeight;
-        }, 1200);
+        }, 1000);
     }
 
-    // Voice-to-Text Upgrade
     function startVoice() {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognition) return alert("Your browser doesn't support voice recognition.");
+        if (!SpeechRecognition) return alert("Browser doesn't support voice.");
         const recognition = new SpeechRecognition();
-        document.getElementById('voice-btn').style.color = "red";
-        recognition.onresult = (event) => {
-            document.getElementById('aiInput').value = event.results[0][0].transcript;
-            document.getElementById('voice-btn').style.color = "var(--primary)";
-            askAI();
-        };
+        recognition.onresult = (e) => { document.getElementById('aiInput').value = e.results[0][0].transcript; askAI(); };
         recognition.start();
     }
 
     function checkout() {
         if(cart.length === 0) return alert("Your cart is empty!");
-        let text = `🚀 *New Order from SnapCart*:\n\n` + cart.map((p, i) => `*${i+1}.* ${p.name} - _₹${p.price}_`).join('\n');
-        text += `\n\n💰 *Total:* ₹${cart.reduce((s, p) => s + p.price, 0)}\n💳 *Payment:* Online Only`;
+        let text = `🚀 *New Order Request*:\n\n` + cart.map((p, i) => `*${i+1}.* ${p.name} - _₹${p.price}_`).join('\n');
+        text += `\n\n💰 *Total:* ₹${cart.reduce((s, p) => s + p.price, 0)}\n🛒 *Method:* Please let me know if you want COD or Online Payment.`;
         window.open(`https://wa.me/${MY_NUM}?text=${encodeURIComponent(text)}`, '_blank');
     }
 </script>
